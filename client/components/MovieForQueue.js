@@ -27,7 +27,7 @@ class MovieForQueue extends React.Component {
               <h6><strong>Watch Date: </strong><i>{movie.watched_date}</i></h6>
             </div>
             <div className="card-action">
-              <a href="#">This is a link</a>
+              <a href='#' onClick={(e) => this.props.deleteMovie(e, movie.id)}>Delete</a>
             </div>
           </div>
         </div>

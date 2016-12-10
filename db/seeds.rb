@@ -6,4 +6,8 @@ end
   user.watched_movies.create(title: "Watched Movie #{n}")
 end
 
+10.times do |n|
+  user.queue_movies.create(title: "Watched Movie #{n}")
+end
+
 puts "#{user.watched_movies.count} movies seeded"

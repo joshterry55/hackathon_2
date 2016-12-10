@@ -14,7 +14,9 @@ class MoviesForQueue extends React.Component {
       return movies.map( movie => {
         return(<MovieForQueue
                 key={movie.id}
-                myMovie={movie} />);
+                myMovie={movie}
+                deleteMovie={this.props.deleteMovie}
+                />);
       });
     } else {
       return(<h3>No Movies Found</h3>)
