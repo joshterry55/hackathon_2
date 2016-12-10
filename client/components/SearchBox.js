@@ -59,6 +59,28 @@ class SearchBox extends Component {
 		})
 	}
 
+handleAddQueue(movie) {
+		$.ajax({
+			type: "POST",
+			url: '/api/queue_movies',
+			dataType: 'JSON',
+			data: { watched_movie: {
+				title: movie.Title,
+				rated: movie.Rated,
+				genre: movie.Genre,
+				actors: movie.Actors,
+				poster: movie.Poster,
+				plot: movie.Plot,
+				year: movie.Year,
+				imdbrating: movie.imdbRating,
+			}}
+		}).done( data => {
+			this.setState = { movie: [] }
+		}).fail( data => {
+			console.log(data)
+		})
+	}
+
 	showMovieResult() {
 		let movie = this.state.movie;
 		if(this.state.movie.Response === "True" ) {
@@ -87,6 +109,13 @@ class SearchBox extends Component {
 							<input type="submit" style={ styles.searchSubmit } value="Add to Watched List" />
 						</form>
 					</div>
+					<div className="col s6" style={styles.watchedForm}>
+						<br /><br />
+						<h5>I want to see this!</h5>
+						<form ref="watchedQueueForm" onSubmit={ e => {e.preventDefault(), this.handleAddQueue(movie) }} >
+							<input type="submit" style={ styles.searchSubmit } value="Add to Queue" />
+						</form>
+					</div>
 				</div>
 				</div>
 			)
@@ -94,6 +123,11 @@ class SearchBox extends Component {
 			return(
 				<div>
 					<h5>{movie.Error}</h5>
+				</div>
+			);
+		} else {
+			return(
+				<div>
 				</div>
 			);
 		}
@@ -114,7 +148,6 @@ class SearchBox extends Component {
 
 	displaySelection() {
 		let that = true
-		console.log('got here')
 		if(that){
 			return(
 				<WatchedMovies />
@@ -130,6 +163,7 @@ class SearchBox extends Component {
 		return(
 			<div>
 			<div style={ styles.searchBox }>
+				<h5>Search For A Movie</h5>
 				<form ref="searchForm" onSubmit={this.handleSearch} >
 					<input type="text" ref="searchQuery" style={ styles.searchQuery }/>
 					<input type="submit" style={ styles.searchSubmit } value="Search" />
@@ -175,11 +209,13 @@ let styles = {
 		width: '100%'
 	},
 	watchedForm: {
-							 padding: '15px',
+							 padding: '5px',
+							 height: '200px',
 							 backgroundColor: '#ddd',
 							 borderRadius: '25px',
 							 textAlign: 'center',
-							 color: 'black'
+							 color: 'black',
+							 border: '5px solid #666'
 							}
 }
 
