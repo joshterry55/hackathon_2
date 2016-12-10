@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(version: 20161210170603) do
     t.string   "plot"
     t.string   "year"
     t.string   "imdbrating"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_queue_movies_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,8 +58,10 @@ ActiveRecord::Schema.define(version: 20161210170603) do
     t.string   "imdbrating"
     t.string   "user_rating"
     t.string   "watched_date"
+    t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["user_id"], name: "index_watched_movies_on_user_id", using: :btree
   end
 
 end

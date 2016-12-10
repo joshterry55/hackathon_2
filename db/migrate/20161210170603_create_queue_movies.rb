@@ -9,6 +9,7 @@ class CreateQueueMovies < ActiveRecord::Migration[5.0]
       t.string :plot
       t.string :year
       t.string :imdbrating
+      t.belongs_to :user
 
       t.timestamps
     end

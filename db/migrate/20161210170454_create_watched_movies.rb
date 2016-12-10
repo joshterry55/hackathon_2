@@ -11,6 +11,7 @@ class CreateWatchedMovies < ActiveRecord::Migration[5.0]
       t.string :imdbrating
       t.string :user_rating
       t.string :watched_date
+      t.belongs_to :user
 
       t.timestamps
     end

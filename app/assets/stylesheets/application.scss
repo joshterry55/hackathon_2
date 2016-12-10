@@ -1,1 +1,10 @@
 @import 'materialize';
+
+.card-image img {
+  display: block;
+  margin: 0 auto;
+}
+
+.card-color {
+  background-color: lightgrey;
+}
