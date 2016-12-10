@@ -16,6 +16,7 @@ class MoviesForQueue extends React.Component {
                 key={movie.id}
                 myMovie={movie}
                 deleteMovie={this.props.deleteMovie}
+                moveMovie={this.props.moveMovie}
                 />);
       });
     } else {

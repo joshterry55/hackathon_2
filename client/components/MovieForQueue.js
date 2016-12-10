@@ -27,6 +27,7 @@ class MovieForQueue extends React.Component {
             </div>
             <div className="card-action">
               <a href='#' onClick={(e) => this.props.deleteMovie(e, movie.id)}>Delete</a>
+              <a href='#' onClick={(e) => this.props.moveMovie(e, movie.id, movie)}>Add to Watched</a>
             </div>
           </div>
         </div>
