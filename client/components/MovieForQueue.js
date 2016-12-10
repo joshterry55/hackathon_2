@@ -14,7 +14,7 @@ class MovieForQueue extends React.Component {
         <h2 className="header"></h2>
         <div className="card-color card horizontal">
           <div className="card-image valign-wrapper" style={styles.movieImage}>
-            <img className='valign' src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ0MzMwMDI4M15BMl5BanBnXkFtZTcwMTAxMDMyMQ@@._V1_SX300.jpg" />
+            <img className='valign' src={movie.poster} />
           </div>
           <div className="card-stacked">
             <div className="card-content">
