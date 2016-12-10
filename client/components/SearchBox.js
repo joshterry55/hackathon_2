@@ -64,7 +64,7 @@ handleAddQueue(movie) {
 			type: "POST",
 			url: '/api/queue_movies',
 			dataType: 'JSON',
-			data: { watched_movie: {
+			data: { queue_movie: {
 				title: movie.Title,
 				rated: movie.Rated,
 				genre: movie.Genre,
