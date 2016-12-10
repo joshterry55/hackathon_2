@@ -1,8 +1,11 @@
 import React from 'react';
+import NavBar from '../components/NavBar';
+import SearchBox from '../components/SearchBox';
 
 const App = ({ children }) => (
   <div>
-    Hello World
+    <NavBar />
+    <SearchBox />
     { children }
   </div>
 )
