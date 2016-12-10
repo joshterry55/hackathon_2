@@ -50,6 +50,7 @@ class WatchedMovies extends React.Component {
         <Movies
           movies={this.state.movies}
           deleteMovie={this.deleteMovie}
+
           />
       </div>
     )

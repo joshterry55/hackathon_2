@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import WatchedMovies from './WatchedMovies';
+import QueueMovies from './QueueMovies';
+
 
 class SearchBox extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = { movie: [], loading: false }
-		
+
 		this.handleSearch = this.handleSearch.bind(this);
 		this.showMovieResult = this.showMovieResult.bind(this);
 		this.loadingState = this.loadingState.bind(this);
 		this.handleAddWatched = this.handleAddWatched.bind(this);
+		this.displaySelection = this.displaySelection.bind(this);
 	}
 
 	handleSearch(e) {
@@ -31,9 +35,28 @@ class SearchBox extends Component {
 	}
 
 	handleAddWatched(date, rating, movie) {
-		console.log(date)
-		console.log(rating)
-		console.log(movie)
+		$.ajax({
+			type: "POST",
+			url: '/api/watched_movies',
+			dataType: 'JSON',
+			data: { watched_movie: {
+				title: movie.Title,
+				rated: movie.Rated,
+				genre: movie.Genre,
+				actors: movie.Actors,
+				poster: movie.Poster,
+				plot: movie.Plot,
+				year: movie.Year,
+				imdbrating: movie.imdbRating,
+				user_rating: rating,
+				watched_date: date
+			}}
+		}).done( data => {
+			this.setState = { movie: []}
+		}).fail( data => {
+			debugger
+			console.log(data)
+		})
 	}
 
 	showMovieResult() {
@@ -89,8 +112,23 @@ class SearchBox extends Component {
 		}
 	}
 
+	displaySelection() {
+		let that = true
+		console.log('got here')
+		if(that){
+			return(
+				<WatchedMovies />
+			)
+		} else {
+			return(
+				<QueueMovies />
+			)
+		}
+	}
+
 	render() {
 		return(
+			<div>
 			<div style={ styles.searchBox }>
 				<form ref="searchForm" onSubmit={this.handleSearch} >
 					<input type="text" ref="searchQuery" style={ styles.searchQuery }/>
@@ -100,13 +138,18 @@ class SearchBox extends Component {
 				<div ref="movieResultBox" className="row">
 					{this.showMovieResult()}
 				</div>
+
 			</div>
+			<div>
+				{this.displaySelection()}
+			</div>
+		</div>
 		);
 	}
 }
 
 let styles = {
-	searchBox: { 
+	searchBox: {
 							 margin: '10px auto',
 							 padding: '15px',
 							 width: '600px',
@@ -116,7 +159,7 @@ let styles = {
 							 textAlign: 'center',
 							 color: 'white'
 							},
-	searchQuery: { 
+	searchQuery: {
 							 width: '250px',
 							 height: '30px',
 							 backgroundColor: 'white',
@@ -131,7 +174,7 @@ let styles = {
 	searchPoster: {
 		width: '100%'
 	},
-	watchedForm: { 
+	watchedForm: {
 							 padding: '15px',
 							 backgroundColor: '#ddd',
 							 borderRadius: '25px',
