@@ -13,6 +13,7 @@ class SearchBox extends Component {
 		this.showMovieResult = this.showMovieResult.bind(this);
 		this.loadingState = this.loadingState.bind(this);
 		this.handleAddWatched = this.handleAddWatched.bind(this);
+		this.handleAddQueue = this.handleAddQueue.bind(this);
 		this.displaySelection = this.displaySelection.bind(this);
 		this.setQueue = this.setQueue.bind(this);
 	}
@@ -22,7 +23,7 @@ class SearchBox extends Component {
 		let searchQuery = this.refs.searchQuery.value;
 		this.setState({ movie: [], loading: true })
 		$.ajax({
-			url: `http://www.omdbapi.com/?t=${searchQuery}&y=&plot=short&type=movie&r=json`,
+			url: `https://www.omdbapi.com/?t=${searchQuery}&y=&plot=short&type=movie&r=json`,
 			type: 'POST',
 			dataType: 'JSON'
 		}).done( movie => {
