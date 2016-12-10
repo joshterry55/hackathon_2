@@ -23,8 +23,7 @@ class MovieForQueue extends React.Component {
               <h6><strong>Plot: </strong><i>{movie.plot}</i></h6>
               <h6><strong>IMDB Rating: </strong><i>{movie.imdbrating}</i></h6>
               <h6><strong>Actors: </strong><i>{movie.actors}</i></h6>
-              <h6><strong>My Rating: </strong><i>{movie.user_rating}</i></h6>
-              <h6><strong>Watch Date: </strong><i>{movie.watched_date}</i></h6>
+
             </div>
             <div className="card-action">
               <a href='#' onClick={(e) => this.props.deleteMovie(e, movie.id)}>Delete</a>
