@@ -19,7 +19,7 @@ class Movies extends React.Component {
                 />);
       });
     } else {
-      return(<h3>No Movies Found</h3>)
+      return(<h3 className="center-stupid-thing">No Movies Found</h3>)
     }
   }
 
