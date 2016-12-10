@@ -12,10 +12,11 @@ class Movies extends React.Component {
     let movies = this.props.movies
     if(movies.length) {
       return movies.map( movie => {
-        debugger
         return(<Movie
                 key={movie.id}
-                myMovie={movie} />);
+                myMovie={movie}
+                deleteMovie={this.props.deleteMovie}
+                />);
       });
     } else {
       return(<h3>No Movies Found</h3>)

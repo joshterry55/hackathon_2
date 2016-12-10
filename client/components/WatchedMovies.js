@@ -6,7 +6,7 @@ class WatchedMovies extends React.Component {
     super(props)
 
     this.state = { movies: [] }
-
+    this.deleteMovie = this.deleteMovie.bind(this)
   }
 
   componentDidMount() {
@@ -22,10 +22,35 @@ class WatchedMovies extends React.Component {
     })
   }
 
+  deleteMovie(e, id) {
+    e.preventDefault()
+    $.ajax({
+      type: 'DELETE',
+      url: `/api/watched_movies/${id}`,
+      dataType: 'JSON'
+    }).success( data => {
+      let movies = this.state.movies;
+      let index = movies.findIndex( b => b.id === id)
+      this.setState({
+        movies:
+        [...movies.slice(0, index),
+         ...movies.slice(index + 1, movies.length)
+        ]
+      })
+
+    }).fail( data => {
+      console.log('i failed')
+    })
+
+  }
+
   render() {
     return(
       <div>
-        <Movies movies={this.state.movies}/>
+        <Movies
+          movies={this.state.movies}
+          deleteMovie={this.deleteMovie}
+          />
       </div>
     )
   }

@@ -12,7 +12,6 @@ class MoviesForQueue extends React.Component {
     let movies = this.props.movies
     if(movies.length) {
       return movies.map( movie => {
-        debugger
         return(<MovieForQueue
                 key={movie.id}
                 myMovie={movie} />);

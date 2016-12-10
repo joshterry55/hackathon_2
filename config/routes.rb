@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :api do
-    get 'watched_movies', to: 'watched_movies#index'
+    resources :watched_movies
     get 'queue_movies', to: 'queue_movies#index'
   end
 
