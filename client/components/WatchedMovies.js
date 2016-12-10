@@ -22,6 +22,8 @@ class WatchedMovies extends React.Component {
     })
   }
 
+
+
   deleteMovie(e, id) {
     e.preventDefault()
     $.ajax({
@@ -47,6 +49,7 @@ class WatchedMovies extends React.Component {
   render() {
     return(
       <div>
+        <h3 className='center'>My Movies Queue</h3>
         <Movies
           movies={this.state.movies}
           deleteMovie={this.deleteMovie}
