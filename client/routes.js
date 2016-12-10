@@ -11,8 +11,8 @@ export default (
     <Route path="/" component={App}>
       <IndexRoute component={SearchBox} />
 
-      <Route path="/watched_movies" component={WatchedMovies} />
-      <Route path="/queue_movies" component={QueueMovies} />
+      <Route path="/watched_movies" component={SearchBox} />
+      <Route path="/queue_movies" component={SearchBox} />
     </Route>
     <Route path="*" status={404} component={NoMatch}/>
   </Route>

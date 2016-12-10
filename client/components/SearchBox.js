@@ -7,13 +7,14 @@ class SearchBox extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { movie: [], loading: false }
+		this.state = { movie: [], loading: false, view: 'watched' }
 
 		this.handleSearch = this.handleSearch.bind(this);
 		this.showMovieResult = this.showMovieResult.bind(this);
 		this.loadingState = this.loadingState.bind(this);
 		this.handleAddWatched = this.handleAddWatched.bind(this);
 		this.displaySelection = this.displaySelection.bind(this);
+		this.setQueue = this.setQueue.bind(this);
 	}
 
 	handleSearch(e) {
@@ -28,7 +29,6 @@ class SearchBox extends Component {
 			this.setState({ movie, loading: false });
 			this.refs.searchForm.reset();
 			this.refs.searchQuery.focus();
-		  console.log(this.state.movie);
 		}).fail( data => {
 			console.log(data);
 		});
@@ -54,7 +54,6 @@ class SearchBox extends Component {
 		}).done( data => {
 			this.setState = { movie: []}
 		}).fail( data => {
-			debugger
 			console.log(data)
 		})
 	}
@@ -147,8 +146,7 @@ handleAddQueue(movie) {
 	}
 
 	displaySelection() {
-		let that = true
-		if(that){
+		if(this.state.view === 'watched'){
 			return(
 				<WatchedMovies />
 			)
@@ -159,25 +157,37 @@ handleAddQueue(movie) {
 		}
 	}
 
+	setQueue(view) {
+		this.setState({view: view})
+	}
+
 	render() {
 		return(
 			<div>
-			<div style={ styles.searchBox }>
-				<h5>Search For A Movie</h5>
-				<form ref="searchForm" onSubmit={this.handleSearch} >
-					<input type="text" ref="searchQuery" style={ styles.searchQuery }/>
-					<input type="submit" style={ styles.searchSubmit } value="Search" />
-				</form>
-				{this.loadingState()}
-				<div ref="movieResultBox" className="row">
-					{this.showMovieResult()}
+				<div style={ styles.searchBox }>
+					<h5>Search For A Movie</h5>
+					<form ref="searchForm" onSubmit={this.handleSearch} >
+						<input type="text" ref="searchQuery" style={ styles.searchQuery }/>
+						<input type="submit" style={ styles.searchSubmit } value="Search" />
+					</form>
+					{this.loadingState()}
+					<div ref="movieResultBox" className="row">
+						{this.showMovieResult()}
+					</div>
 				</div>
-
+				<div className="row">
+					<br />
+					<div className="col s3 offset-s3 center">
+						<button className="btn blue darken-3" onClick={e => {e.preventDefault(), this.setQueue("watched") }}>View Watched</button>
+					</div>
+					<div className="col s3 center">
+						<button className="btn blue darken-3" onClick={e => {e.preventDefault(), this.setQueue("queue") }}>View Queue</button>
+					</div>
+				</div>
+				<div>
+					{this.displaySelection()}
+				</div>
 			</div>
-			<div>
-				{this.displaySelection()}
-			</div>
-		</div>
 		);
 	}
 }
