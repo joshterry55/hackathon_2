@@ -26,7 +26,7 @@ class MovieForQueue extends React.Component {
               <h6><strong>Actors: </strong><i>{movie.actors}</i></h6>
 
             </div>
-            <div className="card-action">
+            <div className="center card-action">
               <a href='#' onClick={(e) => this.props.deleteMovie(e, movie.id)}>Delete</a>
               <a href='#' onClick={(e) => this.props.moveMovie(e, movie.id, movie)}>Add to Watched</a>
                 <Link to={`https://www.youtube.com/results?search_query=${movie.title}+trailer`}
