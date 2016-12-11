@@ -49,7 +49,7 @@ class WatchedMovies extends React.Component {
   render() {
     return(
       <div>
-        <h3 className='center'>My Movies Queue</h3>
+        <h3 className='center'>Watched Movies</h3>
         <Movies
           movies={this.state.movies}
           deleteMovie={this.deleteMovie}
