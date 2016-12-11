@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 class MovieForQueue extends React.Component {
   constructor(props) {
@@ -28,6 +29,10 @@ class MovieForQueue extends React.Component {
             <div className="card-action">
               <a href='#' onClick={(e) => this.props.deleteMovie(e, movie.id)}>Delete</a>
               <a href='#' onClick={(e) => this.props.moveMovie(e, movie.id, movie)}>Add to Watched</a>
+                <Link to={`https://www.youtube.com/results?search_query=${movie.title}+trailer`}
+                target='_blank'>
+                Youtube Trailer
+          </Link>
             </div>
           </div>
         </div>
