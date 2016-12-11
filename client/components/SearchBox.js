@@ -53,7 +53,8 @@ class SearchBox extends Component {
 				watched_date: date
 			}}
 		}).done( data => {
-			this.setState = { movie: []}
+			this.setState({ movie: [], view: 'queue' })
+			this.setState(view: 'watched')
 		}).fail( data => {
 			console.log(data)
 		})
@@ -75,7 +76,8 @@ handleAddQueue(movie) {
 				imdbrating: movie.imdbRating,
 			}}
 		}).done( data => {
-			this.setState = { movie: [] }
+			this.setState({ movie: [], view: 'watched' })
+			this.setState({view: 'queue'})
 		}).fail( data => {
 			console.log(data)
 		})
